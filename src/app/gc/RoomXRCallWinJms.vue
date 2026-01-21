@@ -8,10 +8,10 @@
     <div v-if="!isStartCall && isCallSessionActive" id="idconnectionCalldiv" class="connectionCalldiv">
       <p class="connectionCalldivP">
         <v-progress-circular
-          :size="18"
-          class="pr-4"
-          color="v-xr2L5-base"
-          indeterminate
+            :size="18"
+            class="pr-4"
+            color="v-xr2L5-base"
+            indeterminate
         ></v-progress-circular>
         {{$t('gc.link.input')}}</p>
     </div>
@@ -20,46 +20,7 @@
     <!---------------------------------------------------------------->
 
     <!-- Компонент управления конференцией -->
-    <video-conference-manager
-      ref="conferenceManager"
-      :room-id="paramValueRoom"
-      :user-id="senderId"
-      :user-name="senderName"
-      :is-external-user="isExternalUser"
-      :initial-participants="initialParticipants"
-      @add-user-chat="handleAddUserChat"
-      @set-main-window-text="handleSetMainWindowText"
-      @screen-share-started="handleScreenShareStarted"
-      @screen-share-ended="handleScreenShareEnded"
-      @operator-left="handleOperatorLeft"
-      @participant-removed="handleParticipantRemoved"
-      @call-ended="handleCallEnded"
-    />
 
-    <!-- WebRTC менеджер -->
-    <WebRTCManager
-      ref="webrtcManager"
-      :room-id="paramValueRoom"
-      :local-stream="localStream"
-      :participants="allParticipants"
-      :iksar-webrtc="iksarWebrtc"
-      :ws="webSocket"
-      :is-external-user="isExternalUser"
-      :audio-input-value="audioInputValue"
-      :is-save-call-my="isSaveCallMy"
-      @track-received="handleTrackReceived"
-      @ice-candidate-sent="handleIceCandidateSent"
-      @connection-error="handleConnectionError"
-      @connection-failed="handleConnectionFailed"
-      @reconnect-attempt="handleReconnectAttempt"
-      @connection-stats="handleConnectionStats"
-      @connection-quality="handleConnectionQuality"
-      @audio-level="handleAudioLevel"
-      @offer-to-receive-video="handleOfferToReceiveVideo"
-      @local-stream-updated="handleLocalStreamUpdated"
-      @video-quality-updated="handleVideoQualityUpdated"
-      @all-connections-closed="handleAllConnectionsClosed"
-    />
     <!---------------------------------------------------------------->
 
 
@@ -68,18 +29,18 @@
     <div v-if="isMoreWin" class="div-moreWinMAX" @click="isMoreWin=false">
       <div v-if="isMoreWin" v-bind:class="[isTranslationf ? 'div-moreWin-AT' : 'div-moreWin']">
         <v-card
-          class="mx-auto"
-          max-width="500"
-          tile
+            class="mx-auto"
+            max-width="500"
+            tile
         >
           <v-list flat>
             <!--          <v-subheader>REPORTS</v-subheader>-->
             <v-list-item-group>
               <v-list-item
-                v-for="(item, i) in itemsMoreWin"
-                :key="i"
-                class="itemList-more"
-                @click="clickItemMore(item)"
+                  v-for="(item, i) in itemsMoreWin"
+                  :key="i"
+                  class="itemList-more"
+                  @click="clickItemMore(item)"
               >
                 <v-list-item-icon class="itemList-more-itemicon">
                   <v-icon class="itemList-more-icon" v-text="item.icon"></v-icon>
@@ -115,15 +76,15 @@
         border-radius: 5px;
         border: 2px solid rgb(238 97 97);">
         <XrBtn
-          class=""
-          @click="clickEditBitrate"
-          type="cancel"
-          :text="isDevBitrate ? '+ Bitrate' : '- Bitrate'"/>
+            class=""
+            @click="clickEditBitrate"
+            type="cancel"
+            :text="isDevBitrate ? '+ Bitrate' : '- Bitrate'"/>
         <XrBtn
-          :text="'скриншот'"
-          class=""
-          type="cancel"
-          @click="testScreenshot"/>
+            :text="'скриншот'"
+            class=""
+            type="cancel"
+            @click="testScreenshot"/>
       </v-row>
     </div>
     <!---->
@@ -182,10 +143,10 @@
 
 
     <v-footer
-      style="pointer-events: none;"
-      v-if="isCallSessionActive"
-      :padless=true :absolute=true
-      class="vFooterRoom">
+        style="pointer-events: none;"
+        v-if="isCallSessionActive"
+        :padless=true :absolute=true
+        class="vFooterRoom">
 
 
       <!--      <v-dialog v-model="isMicroWithSpaceBar" v-if="isMicroWithSpaceBar && showTip">-->
@@ -215,11 +176,11 @@
       <!--      </v-dialog>-->
 
       <v-card
-        flat
-        tile
-        width="100%"
-        class="lighten-1 text-center"
-        style="background: rgba(0,0,0,0); padding: 10px"
+          flat
+          tile
+          width="100%"
+          class="lighten-1 text-center"
+          style="background: rgba(0,0,0,0); padding: 10px"
       >
         <v-card-text>
           <div style="position: absolute; z-index: 5000; pointer-events: all" >
@@ -231,19 +192,19 @@
                    :title="isPanelShow ? $t('chat.show-buttons') : $t('chat.hide-buttons')"
                    @click="showHideButtonsPanel">
               <v-icon
-                color="black"
-                size="23"
-                dark
-                v-if="isPanelShow"
+                  color="black"
+                  size="23"
+                  dark
+                  v-if="isPanelShow"
               >
                 mdi-24px mdi-eye
               </v-icon>
 
               <v-icon
-                color="black"
-                size="23"
-                dark
-                v-if="!isPanelShow"
+                  color="black"
+                  size="23"
+                  dark
+                  v-if="!isPanelShow"
               >
                 mdi-eye-off
               </v-icon>
@@ -319,11 +280,11 @@
               <!------------------------------------------------------------->
               <!--  -->
               <XrBtn
-                v-if="isSaveCallMy"
-                class="fabAddSet save"
-                @click="stopSaveCall"
-                @mouseover="isMouseMoveSave = true"
-                @mouseout="isMouseMoveSave = false">
+                  v-if="isSaveCallMy"
+                  class="fabAddSet save"
+                  @click="stopSaveCall"
+                  @mouseover="isMouseMoveSave = true"
+                  @mouseout="isMouseMoveSave = false">
                 <v-icon style="font-size: 16px; color: #e5e5e5!important;"
                         @mouseover="isMouseMoveSave = true">fas fa-record-vinyl
                 </v-icon>
@@ -522,7 +483,6 @@ import AudioTranslation from "@/app/gc/func/translation/AudioTranslation";
 import cst from "@/const";
 import DevPanel from "@/app/gc/func/right/DevPanel";
 import XrPreviewScreenshots from "../global/media/XrPreviewScreenshots";
-import WebRTCManager from "@/app/gc/component/WebRTCManager.vue";
 
 
 var This
@@ -850,7 +810,7 @@ export default {
     // Иницинализация окна
     init(_dev, _ws, _senderName, _hasCamera, _typeBrowser, _isTranslateFunc, _isDevGC, _videoValue, _audioInputValue, _audioOutputValue, _S_OLD_TREAM_VIDEO_FON, _STREAM_AUDIO, serverUrl, isDevUrl) {
       console.log('RoomXRCallWin: init(_dev, _senderName, _hasCamera, serverUrl, isDevUrl, _typeBrowser)',
-        _dev, _senderName, _hasCamera, serverUrl, isDevUrl, _typeBrowser)
+          _dev, _senderName, _hasCamera, serverUrl, isDevUrl, _typeBrowser)
 
       if (this.getLocalStorage('gc.isTranslation') == '1') {
         This.isTranslation = true
@@ -969,11 +929,11 @@ export default {
             // tmp
             console.log('navigator.mediaDevices', navigator.mediaDevices, navigator.mediaDevices.getUserMedia({audio: {optional: [{sourceId: This.audioInputValue}, {echoCancellation: true}, {noiseSuppression: true}, {autoGainControl: true}, {volume: 1.5}]}}))
             navigator.mediaDevices.enumerateDevices()
-              .then(function (devices) {
-                devices.forEach(function (device) {
-                  console.log('___ device (kind, label, devicedId): ', device.kind, device.label, device.deviceId)
+                .then(function (devices) {
+                  devices.forEach(function (device) {
+                    console.log('___ device (kind, label, devicedId): ', device.kind, device.label, device.deviceId)
+                  });
                 });
-              });
 
           })
         }
@@ -1004,9 +964,9 @@ export default {
 
       This.dataUserRecall[request.senderId] = request
       this.receiveVideo(request.senderName, request.bodyPix, request.isMic,
-        request.isVideo,
-        false, false, __hasCamera, request.avatar,
-        request.senderId, request.orient, request.delta, request.prId, request.resultId, request.stepId, request.fileId);
+          request.isVideo,
+          false, false, __hasCamera, request.avatar,
+          request.senderId, request.orient, request.delta, request.prId, request.resultId, request.stepId, request.fileId);
     },
 
     // событие, получение данных для соединения
@@ -1146,11 +1106,11 @@ export default {
       }
 
       if(document.activeElement.id !== 'idTextAreaMess'
-        && document.activeElement.tagName.toLowerCase() !== 'textarea'
-        && document.activeElement.tagName.toLowerCase() !== 'input'
-        && document.activeElement.type !== 'text'
-        && document.activeElement.type !== 'password'
-        && !document.activeElement.classList.contains('textareaForText')) {
+          && document.activeElement.tagName.toLowerCase() !== 'textarea'
+          && document.activeElement.tagName.toLowerCase() !== 'input'
+          && document.activeElement.type !== 'text'
+          && document.activeElement.type !== 'password'
+          && !document.activeElement.classList.contains('textareaForText')) {
         //блок когда не выбрано по пробелу
         if (event.ctrlKey && event.code === "KeyM") {
           if (!this.wasKeyUp)
@@ -1185,11 +1145,11 @@ export default {
 
     handleKeyUpMicro(event) {
       if(document.activeElement.id !== 'idTextAreaMess'
-        && document.activeElement.tagName.toLowerCase() !== 'textarea'
-        && document.activeElement.type !== 'text'
-        && document.activeElement.type !== 'password'
-        && document.activeElement.tagName.toLowerCase() !== 'input'
-        && !document.activeElement.classList.contains('textareaForText')) {
+          && document.activeElement.tagName.toLowerCase() !== 'textarea'
+          && document.activeElement.type !== 'text'
+          && document.activeElement.type !== 'password'
+          && document.activeElement.tagName.toLowerCase() !== 'input'
+          && !document.activeElement.classList.contains('textareaForText')) {
 
         if (document.activeElement.id !== 'idTextAreaMess')
           document.activeElement.blur()
@@ -1581,72 +1541,72 @@ export default {
       console.log('constraintsNoVideo',constraintsNoVideo)
 
       navigator.mediaDevices.getUserMedia(constraintsNoVideo)
-        .then(screenStream => {
-          // console.log('TA $(\'#video_\' + This.senderId)[0]', $('#video_' + This.senderId)[0]);
-          // console.log('TA screenStream', screenStream);
-          // console.log('TA $(\'#audio_\' + This.senderId)[0]', $('#audio_' + This.senderId)[0]);
-          // console.log('This.hasCamera', This.hasCamera);
+          .then(screenStream => {
+            // console.log('TA $(\'#video_\' + This.senderId)[0]', $('#video_' + This.senderId)[0]);
+            // console.log('TA screenStream', screenStream);
+            // console.log('TA $(\'#audio_\' + This.senderId)[0]', $('#audio_' + This.senderId)[0]);
+            // console.log('This.hasCamera', This.hasCamera);
 
-          if (This.hasCamera && This.hasMic) {
-            console.log("iksarWebrtc.WebRtcPeer.WebRtcPeerSendonly есть камера и микрофон")
-            options = {
-              localVideo: $('#video_' + This.senderId)[0],
-              name: This.senderId,
-              mediaConstraints: constraints,
-              onicecandidate: this.onIceCandidate
-            }
-          } else if(!This.hasCamera && This.hasMic) {
-            console.log("iksarWebrtc.WebRtcPeer.WebRtcPeerSendonly нет камеры и есть микрофон")
-            options = {
-              videoStream: screenStream,
-              name: This.senderId,
-              mediaConstraints: constraintsNoVideo,
-              onicecandidate: this.onIceCandidate
-            }
-          } else if(This.hasCamera && !This.hasMic){
-            console.log("iksarWebrtc.WebRtcPeer.WebRtcPeerSendonly есть камера и нет микрофона")
-            var constraintsNoAudio = {
-              audio: false,
-              video: (videoSource != null) ? {optional: [{sourceId: videoSource}]} : true // false
-            }
-            options = {
-              localVideo: $('#video_' + This.senderId)[0],
-              name: This.senderId,
-              mediaConstraints: constraintsNoAudio,
-              onicecandidate: this.onIceCandidate
-            }
-          } else {
-            console.log("iksarWebrtc.WebRtcPeer.WebRtcPeerSendonly нет камеры и микрофона")
-            var constraintsNoAudioVideo = {
-              audio: false,
-              video: false
-            }
-            options = {
-              videoStream: screenStream,
-              name: This.senderId,
-              mediaConstraints: constraintsNoAudioVideo,
-              onicecandidate: this.onIceCandidate
-            }
-          }
-
-          console.log('SS options ', options)
-          console.log('SS senderId ' + This.senderId + ' This.paramValueRoom ' + This.paramValueRoom)
-          console.log('iksarWebrtc.WebRtcPeer WebRtcPeerSendonly')
-
-          let self = this
-          participant.peer = new this.iksarWebrtc.WebRtcPeer.WebRtcPeerSendonly(options,
-            function (error) {
-              if (error) {
-                return console.error(error);
+            if (This.hasCamera && This.hasMic) {
+              console.log("iksarWebrtc.WebRtcPeer.WebRtcPeerSendonly есть камера и микрофон")
+              options = {
+                localVideo: $('#video_' + This.senderId)[0],
+                name: This.senderId,
+                mediaConstraints: constraints,
+                onicecandidate: this.onIceCandidate
               }
-              participant.ofTEST = self.onOfferCall;
-              participant.ofOPTION = options;
-              participant.stopvideo = true
-              // this.generateOffer(self.onOfferCall);
-              this.generateOffer(participant.ofTEST, self.senderId);
+            } else if(!This.hasCamera && This.hasMic) {
+              console.log("iksarWebrtc.WebRtcPeer.WebRtcPeerSendonly нет камеры и есть микрофон")
+              options = {
+                videoStream: screenStream,
+                name: This.senderId,
+                mediaConstraints: constraintsNoVideo,
+                onicecandidate: this.onIceCandidate
+              }
+            } else if(This.hasCamera && !This.hasMic){
+              console.log("iksarWebrtc.WebRtcPeer.WebRtcPeerSendonly есть камера и нет микрофона")
+              var constraintsNoAudio = {
+                audio: false,
+                video: (videoSource != null) ? {optional: [{sourceId: videoSource}]} : true // false
+              }
+              options = {
+                localVideo: $('#video_' + This.senderId)[0],
+                name: This.senderId,
+                mediaConstraints: constraintsNoAudio,
+                onicecandidate: this.onIceCandidate
+              }
+            } else {
+              console.log("iksarWebrtc.WebRtcPeer.WebRtcPeerSendonly нет камеры и микрофона")
+              var constraintsNoAudioVideo = {
+                audio: false,
+                video: false
+              }
+              options = {
+                videoStream: screenStream,
+                name: This.senderId,
+                mediaConstraints: constraintsNoAudioVideo,
+                onicecandidate: this.onIceCandidate
+              }
+            }
 
-            });
-        })
+            console.log('SS options ', options)
+            console.log('SS senderId ' + This.senderId + ' This.paramValueRoom ' + This.paramValueRoom)
+            console.log('iksarWebrtc.WebRtcPeer WebRtcPeerSendonly')
+
+            let self = this
+            participant.peer = new this.iksarWebrtc.WebRtcPeer.WebRtcPeerSendonly(options,
+                function (error) {
+                  if (error) {
+                    return console.error(error);
+                  }
+                  participant.ofTEST = self.onOfferCall;
+                  participant.ofOPTION = options;
+                  participant.stopvideo = true
+                  // this.generateOffer(self.onOfferCall);
+                  this.generateOffer(participant.ofTEST, self.senderId);
+
+                });
+          })
 
       // console.log("HAS_CAMERA This.hasCamera= "+This.hasCamera)
       // if(This.hasCamera){
@@ -1818,16 +1778,16 @@ export default {
         console.log('item.avatar ' + urlRest + item.avatar)
 
         This.$root.restGet(urlRest + item.avatar)
-          .then((res) => {
-            console.log('getAvatarGC res', res)
-            This.receiveVideo(item.senderName, item.isBodyPix, item.isMIc, item.isVideo, item.isFuncOper,
-              item.isOperFuncOper, __hasCamera, res.avatar, item.senderId, item.orient, item.delta,
-              item.prId, item.resultId, item.stepId, item.fileId)
-          }).catch((error) => {
+            .then((res) => {
+              console.log('getAvatarGC res', res)
+              This.receiveVideo(item.senderName, item.isBodyPix, item.isMIc, item.isVideo, item.isFuncOper,
+                  item.isOperFuncOper, __hasCamera, res.avatar, item.senderId, item.orient, item.delta,
+                  item.prId, item.resultId, item.stepId, item.fileId)
+            }).catch((error) => {
           console.log('ошибка аватар getAvatarGC res', error)
           This.receiveVideo(item.senderName, item.isBodyPix, item.isMIc, item.isVideo, item.isFuncOper,
-            item.isOperFuncOper, __hasCamera, null, item.senderId, item.orient, item.delta,
-            item.prId, item.resultId, item.stepId, item.fileId)
+              item.isOperFuncOper, __hasCamera, null, item.senderId, item.orient, item.delta,
+              item.prId, item.resultId, item.stepId, item.fileId)
         });
       });
       This.resizeWin(3)
@@ -1863,22 +1823,22 @@ export default {
         // });
 
         offerSdp = arr.join('\r\n'),
-          this.sendMessage(
-            {
-              id: 'receiveVideoFrom',
-              senderId: senderId,
-              senderName: senderId,
-              //id: this.call_message,
-              from: context.call_from,
-              to: context.call_to,
-              sdpOffer: offerSdp,
-              dev: context.dev,
-              // nik 24.10.2018
-              save_video: context.call_save_video,
-              send_video: context.call_send_video,
-              saved_video_format: context.call_saved_video_format
-            }
-          );
+            this.sendMessage(
+                {
+                  id: 'receiveVideoFrom',
+                  senderId: senderId,
+                  senderName: senderId,
+                  //id: this.call_message,
+                  from: context.call_from,
+                  to: context.call_to,
+                  sdpOffer: offerSdp,
+                  dev: context.dev,
+                  // nik 24.10.2018
+                  save_video: context.call_save_video,
+                  send_video: context.call_send_video,
+                  saved_video_format: context.call_saved_video_format
+                }
+            );
       }
 
       setTimeout(() => {
@@ -1983,58 +1943,58 @@ export default {
       }
 
       navigator.getUserMedia = navigator.getUserMedia ||
-        navigator.webkitGetUserMedia ||
-        navigator.mozGetUserMedia;
+          navigator.webkitGetUserMedia ||
+          navigator.mozGetUserMedia;
       if (navigator.getUserMedia) {
         navigator.getUserMedia(constraints,
-          function (stream) {
+            function (stream) {
 
-            console.log('AEUDIO startAudioVolume', stream)
-            stream.getAudioTracks()[0].addEventListener("unmute", event => {
-              console.log('AEUDIO 2 устройство микрофон вкл.')
-            }, false);
-            stream.getAudioTracks()[0].addEventListener("mute", event => {
-              console.log('AEUDIO 2 устройство микрофон выкл')
-            }, false);
-            stream.getAudioTracks()[0].addEventListener("ended", event => {
-              console.log('AEUDIO 2 устройство звука удалили')
-              This.newAudioEnded()
-            }, false);
-            stream.getAudioTracks()[0].addEventListener("isolationchange", event => {
-              console.log('AEUDIO 2 521')
-            }, false);
-            // sender.track.onended = () => navigator.mediaDevices.ondevicechange = tryAgain;
+              console.log('AEUDIO startAudioVolume', stream)
+              stream.getAudioTracks()[0].addEventListener("unmute", event => {
+                console.log('AEUDIO 2 устройство микрофон вкл.')
+              }, false);
+              stream.getAudioTracks()[0].addEventListener("mute", event => {
+                console.log('AEUDIO 2 устройство микрофон выкл')
+              }, false);
+              stream.getAudioTracks()[0].addEventListener("ended", event => {
+                console.log('AEUDIO 2 устройство звука удалили')
+                This.newAudioEnded()
+              }, false);
+              stream.getAudioTracks()[0].addEventListener("isolationchange", event => {
+                console.log('AEUDIO 2 521')
+              }, false);
+              // sender.track.onended = () => navigator.mediaDevices.ondevicechange = tryAgain;
 
-            var audioContext = new AudioContext();
-            var analyser = audioContext.createAnalyser();
-            var microphone = audioContext.createMediaStreamSource(stream);
-            var javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
+              var audioContext = new AudioContext();
+              var analyser = audioContext.createAnalyser();
+              var microphone = audioContext.createMediaStreamSource(stream);
+              var javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
 
-            analyser.smoothingTimeConstant = 0.8;
-            analyser.fftSize = 1024;
+              analyser.smoothingTimeConstant = 0.8;
+              analyser.fftSize = 1024;
 
-            microphone.connect(analyser);
-            analyser.connect(javascriptNode);
-            javascriptNode.connect(audioContext.destination);
+              microphone.connect(analyser);
+              analyser.connect(javascriptNode);
+              javascriptNode.connect(audioContext.destination);
 
-            javascriptNode.onaudioprocess = function () {
-              var array = new Uint8Array(analyser.frequencyBinCount);
-              analyser.getByteFrequencyData(array);
-              var values = 0;
+              javascriptNode.onaudioprocess = function () {
+                var array = new Uint8Array(analyser.frequencyBinCount);
+                analyser.getByteFrequencyData(array);
+                var values = 0;
 
-              var length = array.length;
-              for (var i = 0; i < length; i++) {
-                values += (array[i]);
-              }
+                var length = array.length;
+                for (var i = 0; i < length; i++) {
+                  values += (array[i]);
+                }
 
-              var average = values / length;
-              This.sendVoiseAverage(average)
+                var average = values / length;
+                This.sendVoiseAverage(average)
 
-            } // end fn stream
-          },
-          function (err) {
-            console.error(err)
-          });
+              } // end fn stream
+            },
+            function (err) {
+              console.error(err)
+            });
       } else {
         console.error('error audio')
       }
@@ -2043,12 +2003,6 @@ export default {
 
     //region Добавление нового видео----------------------------------------------------------------------------------
     //Новый код jitsi
-    receiveVideo1(senderName, isBodyPix, isMic, isVideo, isFuncOper, isOperFuncOper, hasCamera, avatar,
-                 senderId, orient, delta, prId, resultId, stepId, fileId){
-
-    },
-
-
 
     //endregion
 
@@ -2518,21 +2472,21 @@ export default {
         console.log('iksarWebrtc.WebRtcPeer WebRtcPeerRecvonly')
 
         participant.peer = new this.iksarWebrtc.WebRtcPeer.WebRtcPeerRecvonly(options,
-          function (error) {
-            if (error) {
-              participant.new = false
+            function (error) {
+              if (error) {
+                participant.new = false
 
-              return console.error(error);
-            }
+                return console.error(error);
+              }
 
-            console.log('Подключение к webrtc на получение видео от ' + senderName)
+              console.log('Подключение к webrtc на получение видео от ' + senderName)
 
-            participant.ofTEST = self.offerToReceiveVideo;
-            participant.ofOPTION = options;
+              participant.ofTEST = self.offerToReceiveVideo;
+              participant.ofOPTION = options;
 
-            this.generateOffer(participant.ofTEST, senderId);
+              this.generateOffer(participant.ofTEST, senderId);
 
-          });
+            });
         ;
       }, 500)
 
@@ -3172,9 +3126,9 @@ export default {
           if (!this.isVideoHardNet) {
 
             this.$root.showInfo(this.$t('gc.size.maxBit.error') +'\n'
-              +'\n'+this.$t('video')+': '+this.$t('gc.size.maxBit.error.info1')+ ' ' +roundTripTimeV +', '+this.$t('gc.size.maxBit.error.info2')+ ' '+ jitterV+', '+this.$t('gc.size.maxBit.error.info3')+ ' '+ packetsLostV
-              +'\n'
-              +'\n'+this.$t('audio')+': '+this.$t('gc.size.maxBit.error.info1')+ ' ' +roundTripTimeA +', '+this.$t('gc.size.maxBit.error.info2')+ ' '+ jitterA+', '+this.$t('gc.size.maxBit.error.info3')+ ' '+ packetsLostA)
+                +'\n'+this.$t('video')+': '+this.$t('gc.size.maxBit.error.info1')+ ' ' +roundTripTimeV +', '+this.$t('gc.size.maxBit.error.info2')+ ' '+ jitterV+', '+this.$t('gc.size.maxBit.error.info3')+ ' '+ packetsLostV
+                +'\n'
+                +'\n'+this.$t('audio')+': '+this.$t('gc.size.maxBit.error.info1')+ ' ' +roundTripTimeA +', '+this.$t('gc.size.maxBit.error.info2')+ ' '+ jitterA+', '+this.$t('gc.size.maxBit.error.info3')+ ' '+ packetsLostA)
 
             this.isVideoHardNet = true
             this.minBitisVideoStream = this.isStreamVideo
@@ -3325,12 +3279,12 @@ export default {
 
       if (senderName.substring(0, 7) == 'scrsXR_') {
         This.$refs.refConfirm.open(this.$t('gc.deleteuser.dialog'),
-          this.$t('gc.deleteuser.dialog.mess.ss') + '?',
-          6, {color: 'warning'}, message)
+            this.$t('gc.deleteuser.dialog.mess.ss') + '?',
+            6, {color: 'warning'}, message)
       } else {
         This.$refs.refConfirm.open(this.$t('gc.deleteuser.dialog'),
-          this.$t('gc.deleteuser.dialog.mess') + ' ' + senderName + ' ' + this.$t('gc.deleteuser.dialog.mess2'),
-          6, {color: 'warning'}, message)
+            this.$t('gc.deleteuser.dialog.mess') + ' ' + senderName + ' ' + this.$t('gc.deleteuser.dialog.mess2'),
+            6, {color: 'warning'}, message)
       }
     },
     //endregion
@@ -3356,8 +3310,8 @@ export default {
         this.sendMessage(message)
       } else {
         This.$refs.refConfirm.open(this.$t('gc.isMicUser.dialog'),
-          this.$t('gc.isMicUser.dialog.mess') + ' ' + senderName + ' ' + this.$t('gc.isMicUser.dialog.mess2'),
-          2, {color: 'warning'}, message)
+            this.$t('gc.isMicUser.dialog.mess') + ' ' + senderName + ' ' + this.$t('gc.isMicUser.dialog.mess2'),
+            2, {color: 'warning'}, message)
       }
     },
     //endregion
@@ -4414,7 +4368,7 @@ export default {
                 console.log('проверка, '+name+' peer .update', stream.calls['' + keys[i]].update)
 
                 if(stream.calls['' + keys[i]].peer.peerConnection.connectionState === 'failed'
-                  && stream.calls['' + keys[i]].peer.peerConnection.iceConnectionState === 'disconnected'){
+                    && stream.calls['' + keys[i]].peer.peerConnection.iceConnectionState === 'disconnected'){
                   console.log('мой поток потерян, нужно попробовать перегрузить')
 
                   This.ws.close()
@@ -4557,12 +4511,12 @@ export default {
           },
 
           setLocation: function (
-            x,
-            y,
-            width,
-            height,
-            screen_x,
-            screen_y
+              x,
+              y,
+              width,
+              height,
+              screen_x,
+              screen_y
           ) {
             if (typeof screen_x === 'undefined') {
               screen_x = null;
@@ -5081,17 +5035,17 @@ export default {
     attachSinkId(element, sinkId) {
       if (typeof element.sinkId !== 'undefined') {
         element.setSinkId(sinkId)
-          .then(() => {
-            ////console.log(`Success, audio output device attached: ${sinkId}`);
-          })
-          .catch(error => {
-            let errorMessage = error;
-            if (error.name === 'SecurityError') {
-              errorMessage = `You need to use HTTPS for selecting audio output device: ${error}`;
-            }
-            console.error(errorMessage);
-            // Jump back to first output device in the list as it's the default.
-          });
+            .then(() => {
+              ////console.log(`Success, audio output device attached: ${sinkId}`);
+            })
+            .catch(error => {
+              let errorMessage = error;
+              if (error.name === 'SecurityError') {
+                errorMessage = `You need to use HTTPS for selecting audio output device: ${error}`;
+              }
+              console.error(errorMessage);
+              // Jump back to first output device in the list as it's the default.
+            });
       } else {
         console.warn('Browser does not support output device selection.');
       }
@@ -5116,23 +5070,23 @@ export default {
       } else if (item.type == 2) {// диалог с настройками
         if (this.isFirefox) {
           This.$refs.refConfirm.open(this.$t('gc.isallmute.dialog'),
-            this.$t('gc.isallmute.dialog.mess'),
-            5, {color: 'warning'}, '')
+              this.$t('gc.isallmute.dialog.mess'),
+              5, {color: 'warning'}, '')
         } else {
           this.$emit('dialogSettCall', '')
         }
 
       } else if (item.type == 3) {// отключить микрофон всех участников
         This.$refs.refConfirm.open(this.$t('gc.isallmute.dialog'),
-          this.$t('gc.isallmute.dialog.mess'),
-          5, {color: 'warning'}, '')
+            this.$t('gc.isallmute.dialog.mess'),
+            5, {color: 'warning'}, '')
       } else if (item.type == 4) {
         if (This.isSaveCall) {
           This.$root.showInfo('Нельзя включить запись, если кто-то из участников уже ее включил!')
         } else {
           This.$refs.refConfirm.open(this.$t('gc.saveSession.dialog'),
-            this.$t('gc.saveSession.dialog.mess'),
-            7, {color: 'warning'}, '')
+              this.$t('gc.saveSession.dialog.mess'),
+              7, {color: 'warning'}, '')
         }
       } else if (item.type == 5) {//включить режим разработчика
         this.devGC = !this.devGC
@@ -5282,30 +5236,30 @@ export default {
 
       var audioInputSelect = []
       navigator.mediaDevices.enumerateDevices()
-        .then(function (devices) {
-          devices.forEach(function (device) {
-            ////console.log('___ device.kind '+device.kind)
-            if (device.kind == 'audioinput') {
-              audioInputSelect.push({text: device.label, value: device.deviceId})
-            }
-          });
-        })
-        .then(() => {
-          console.log('AUDIO newAudioEnded this.audioInputValue = ',audioInputSelect[0])
-          This.audioInputValue = audioInputSelect[0]
-
-          var constraints2 = {
-            audio: {optional: [{sourceId: This.audioInputValue}, {echoCancellation: true}, {noiseSuppression: true}, {autoGainControl: true}, {volume: 1.5}]},
-            video: false,
-          }
-          if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia(constraints2).then(function (stream) {
-              STREAM_AUDIO = stream
-              This.saveSettingsCall(This.audioInputValue, This.audioOutputValue, This.videoValue, STREAM_VIDEO, STREAM_AUDIO)
+          .then(function (devices) {
+            devices.forEach(function (device) {
+              ////console.log('___ device.kind '+device.kind)
+              if (device.kind == 'audioinput') {
+                audioInputSelect.push({text: device.label, value: device.deviceId})
+              }
             });
-          }
+          })
+          .then(() => {
+            console.log('AUDIO newAudioEnded this.audioInputValue = ',audioInputSelect[0])
+            This.audioInputValue = audioInputSelect[0]
 
-        })
+            var constraints2 = {
+              audio: {optional: [{sourceId: This.audioInputValue}, {echoCancellation: true}, {noiseSuppression: true}, {autoGainControl: true}, {volume: 1.5}]},
+              video: false,
+            }
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+              navigator.mediaDevices.getUserMedia(constraints2).then(function (stream) {
+                STREAM_AUDIO = stream
+                This.saveSettingsCall(This.audioInputValue, This.audioOutputValue, This.videoValue, STREAM_VIDEO, STREAM_AUDIO)
+              });
+            }
+
+          })
     },
 
     saveSettingsCall(update, _audioInputValue, _audioOutputValue, _videoValue, _videoQualtiySendValue, _videoQualtiyRecvValue) {
@@ -5340,67 +5294,67 @@ export default {
 
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
           navigator.mediaDevices.getUserMedia(constraints)
-            .then(function (stream) {
-              STREAM_VIDEO = stream
+              .then(function (stream) {
+                STREAM_VIDEO = stream
 
-              senders.forEach((sender) => {
-                if (sender.track && (sender.transport.state === 'connected')) {
-                  if (sender.track.kind == 'video') {
+                senders.forEach((sender) => {
+                  if (sender.track && (sender.transport.state === 'connected')) {
+                    if (sender.track.kind == 'video') {
 
-                    if (STREAM_VIDEO != null) {
-                      sender.track.stop
-                      // const constraints = {
-                      //   width: {min: 640, ideal: 1280},
-                      //   height: {min: 320, ideal: 720},
-                      //   advanced: [
-                      //     {width: 1240, height: 720},
-                      //     {aspectRatio: 1.333}
-                      //   ]
-                      // };
-                      const constraints = {
-                        width: 640,
-                        height: 320,
-                        frameRite: 15,
-                        advanced: [
-                          {width: 640, height: 320, frameRite: 15},
-                          {aspectRatio: 1.333}
-                        ]
-                      };
+                      if (STREAM_VIDEO != null) {
+                        sender.track.stop
+                        // const constraints = {
+                        //   width: {min: 640, ideal: 1280},
+                        //   height: {min: 320, ideal: 720},
+                        //   advanced: [
+                        //     {width: 1240, height: 720},
+                        //     {aspectRatio: 1.333}
+                        //   ]
+                        // };
+                        const constraints = {
+                          width: 640,
+                          height: 320,
+                          frameRite: 15,
+                          advanced: [
+                            {width: 640, height: 320, frameRite: 15},
+                            {aspectRatio: 1.333}
+                          ]
+                        };
 
-                      STREAM_VIDEO.getVideoTracks()[0].applyConstraints(constraints)
-                        .then(() => {
-                          sender.replaceTrack(STREAM_VIDEO.getVideoTracks()[0]);
-                          $(`#video_` + This.senderId)[0].srcObject = STREAM_VIDEO;
-                        })
-                        .catch(e => {
-                          console.error(e)
-                        });
+                        STREAM_VIDEO.getVideoTracks()[0].applyConstraints(constraints)
+                            .then(() => {
+                              sender.replaceTrack(STREAM_VIDEO.getVideoTracks()[0]);
+                              $(`#video_` + This.senderId)[0].srcObject = STREAM_VIDEO;
+                            })
+                            .catch(e => {
+                              console.error(e)
+                            });
+                      }
+                      // }
+
                     }
-                    // }
-
+                    else if (sender.track.kind == 'audio') {
+                      // if (_STREAM_AUDIO != null) {
+                      //   sender.replaceTrack(_STREAM_AUDIO.getAudioTracks()[0]);
+                      // }
+                    }
                   }
-                  else if (sender.track.kind == 'audio') {
-                    // if (_STREAM_AUDIO != null) {
-                    //   sender.replaceTrack(_STREAM_AUDIO.getAudioTracks()[0]);
-                    // }
+                });
+              })
+              .catch(function (err) {
+                console.log('catch no camera ', err)
+                senders.forEach((sender) => {
+                  if (sender.track && (sender.transport.state === 'connected')) {
+                    if (sender.track.kind == 'audio') {
+                      // if (_STREAM_AUDIO != null) {
+                      //   console.log('new audio track no CAMERA ', _STREAM_AUDIO.getAudioTracks()[0])
+                      //   sender.replaceTrack(_STREAM_AUDIO.getAudioTracks()[0]);
+                      // }
+                    }
                   }
-                }
+                });
+                // STREAM_AUDIO = _STREAM_AUDIO
               });
-            })
-            .catch(function (err) {
-              console.log('catch no camera ', err)
-              senders.forEach((sender) => {
-                if (sender.track && (sender.transport.state === 'connected')) {
-                  if (sender.track.kind == 'audio') {
-                    // if (_STREAM_AUDIO != null) {
-                    //   console.log('new audio track no CAMERA ', _STREAM_AUDIO.getAudioTracks()[0])
-                    //   sender.replaceTrack(_STREAM_AUDIO.getAudioTracks()[0]);
-                    // }
-                  }
-                }
-              });
-              // STREAM_AUDIO = _STREAM_AUDIO
-            });
         }
       }
 
@@ -5412,21 +5366,21 @@ export default {
 
     addAudioTrack() {
       navigator.getUserMedia = navigator.getUserMedia ||
-        navigator.webkitGetUserMedia ||
-        navigator.mozGetUserMedia;
+          navigator.webkitGetUserMedia ||
+          navigator.mozGetUserMedia;
       if (navigator.getUserMedia) {
         navigator.getUserMedia({
-            audio: {optional: [{sourceId: This.audioInputValue}, {echoCancellation: true}, {noiseSuppression: true}, {autoGainControl: true}, {volume: 1.5}]}
-          },
-          function (stream) {
-            ////console.log('___stream___')
+              audio: {optional: [{sourceId: This.audioInputValue}, {echoCancellation: true}, {noiseSuppression: true}, {autoGainControl: true}, {volume: 1.5}]}
+            },
+            function (stream) {
+              ////console.log('___stream___')
 
-            STREAM_AUDIO = stream
-            // end fn stream
-          },
-          function (err) {
-            ////console.log("The following error occured: " + err.name)
-          });
+              STREAM_AUDIO = stream
+              // end fn stream
+            },
+            function (err) {
+              ////console.log("The following error occured: " + err.name)
+            });
       } else {
         ////console.log("getUserMedia not supported");
       }
@@ -5444,71 +5398,71 @@ export default {
       }
 
       navigator.getUserMedia = navigator.getUserMedia ||
-        navigator.webkitGetUserMedia ||
-        navigator.mozGetUserMedia;
+          navigator.webkitGetUserMedia ||
+          navigator.mozGetUserMedia;
       if (navigator.getUserMedia) {
         navigator.getUserMedia(constraints,
-          function (stream) {
+            function (stream) {
 
-            STREAM_AUDIO = stream
+              STREAM_AUDIO = stream
 
-            senders.forEach((sender) => {
-              if (sender.track && (sender.transport.state === 'connected')) {
-                if (sender.track.kind == 'audio') {
-                  if (STREAM_AUDIO != null) {
-                    console.log('Замена аудио дорожки и удаление старой')
-                    sender.replaceTrack(STREAM_AUDIO.getAudioTracks()[0]);
+              senders.forEach((sender) => {
+                if (sender.track && (sender.transport.state === 'connected')) {
+                  if (sender.track.kind == 'audio') {
+                    if (STREAM_AUDIO != null) {
+                      console.log('Замена аудио дорожки и удаление старой')
+                      sender.replaceTrack(STREAM_AUDIO.getAudioTracks()[0]);
+                    }
                   }
                 }
-              }
+              });
+
+              console.log('AEUDIO audioInputUpdate',stream)
+              stream.getAudioTracks()[0].addEventListener("unmute", event => {
+                console.log('AEUDIO устройство микрофон вкл.')
+              }, false);
+              stream.getAudioTracks()[0].addEventListener("mute", event => {
+                console.log('AEUDIO устройство микрофон выкл')
+              }, false);
+              stream.getAudioTracks()[0].addEventListener("ended", event => {
+                console.log('AEUDIOустройство звука удалили')
+                This.newAudioEnded()
+              }, false);
+              stream.getAudioTracks()[0].addEventListener("isolationchange", event => {
+                console.log('AEUDIO 521')
+              }, false);
+              // sender.track.onended = () => navigator.mediaDevices.ondevicechange = tryAgain;
+
+              var audioContext = new AudioContext();
+              var analyser = audioContext.createAnalyser();
+              var microphone = audioContext.createMediaStreamSource(stream);
+              var javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
+
+              analyser.smoothingTimeConstant = 0.8;
+              analyser.fftSize = 1024;
+
+              microphone.connect(analyser);
+              analyser.connect(javascriptNode);
+              javascriptNode.connect(audioContext.destination);
+
+              javascriptNode.onaudioprocess = function () {
+                var array = new Uint8Array(analyser.frequencyBinCount);
+                analyser.getByteFrequencyData(array);
+                var values = 0;
+
+                var length = array.length;
+                for (var i = 0; i < length; i++) {
+                  values += (array[i]);
+                }
+
+                var average = values / length;
+                This.sendVoiseAverage(average)
+
+              } // end fn stream
+            },
+            function (err) {
+              console.error(err)
             });
-
-            console.log('AEUDIO audioInputUpdate',stream)
-            stream.getAudioTracks()[0].addEventListener("unmute", event => {
-              console.log('AEUDIO устройство микрофон вкл.')
-            }, false);
-            stream.getAudioTracks()[0].addEventListener("mute", event => {
-              console.log('AEUDIO устройство микрофон выкл')
-            }, false);
-            stream.getAudioTracks()[0].addEventListener("ended", event => {
-              console.log('AEUDIOустройство звука удалили')
-              This.newAudioEnded()
-            }, false);
-            stream.getAudioTracks()[0].addEventListener("isolationchange", event => {
-              console.log('AEUDIO 521')
-            }, false);
-            // sender.track.onended = () => navigator.mediaDevices.ondevicechange = tryAgain;
-
-            var audioContext = new AudioContext();
-            var analyser = audioContext.createAnalyser();
-            var microphone = audioContext.createMediaStreamSource(stream);
-            var javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
-
-            analyser.smoothingTimeConstant = 0.8;
-            analyser.fftSize = 1024;
-
-            microphone.connect(analyser);
-            analyser.connect(javascriptNode);
-            javascriptNode.connect(audioContext.destination);
-
-            javascriptNode.onaudioprocess = function () {
-              var array = new Uint8Array(analyser.frequencyBinCount);
-              analyser.getByteFrequencyData(array);
-              var values = 0;
-
-              var length = array.length;
-              for (var i = 0; i < length; i++) {
-                values += (array[i]);
-              }
-
-              var average = values / length;
-              This.sendVoiseAverage(average)
-
-            } // end fn stream
-          },
-          function (err) {
-            console.error(err)
-          });
       } else {
         console.error('error audio')
       }
@@ -5674,8 +5628,8 @@ export default {
         if (!this.isScreenSharing) {
           if (this.numScreenSharinWin > 0) {
             This.$refs.refConfirm.open(this.$t('gc.isSS.dialog'),
-              this.$t('gc.isSS.dialog.mess'),
-              4, {color: 'warning'}, '')
+                this.$t('gc.isSS.dialog.mess'),
+                4, {color: 'warning'}, '')
           } else {
             this.isScreenSharing = !this.isScreenSharing
             this.$refs.resRoomXR.init(This.paramValueRoom, 'scrsXR_' + This.senderName, This.typeBrowser, This.serverUrl, This.isDevUrl)
@@ -7055,64 +7009,64 @@ export default {
             var voiceBlob
 
             navigator.mediaDevices.getUserMedia({audio: {optional: [{sourceId: This.audioInputValue}, {echoCancellation: true}, {noiseSuppression: true}, {autoGainControl: true}, {volume: 1.5}]}})
-              .then(stream => {
-                console.log('stream.getTracks()', stream.getTracks())
+                .then(stream => {
+                  console.log('stream.getTracks()', stream.getTracks())
 
-                stream.getTracks().forEach(function (track) {
-                  if (track.kind == 'audio') {
-                    // track.stop();
-                    stream.removeTrack(sender.track)
+                  stream.getTracks().forEach(function (track) {
+                    if (track.kind == 'audio') {
+                      // track.stop();
+                      stream.removeTrack(sender.track)
 
-                    console.log('sender', sender)
-                    console.log('sender.track', sender.track)
+                      console.log('sender', sender)
+                      console.log('sender.track', sender.track)
 
-                    // stream.addTrack(sender.track)
-                    console.log('stream.getTracks()', stream.getTracks())
-                  }
-                });
-
-                This.mediaRecorder = new MediaRecorder(stream);
-
-                let voice = [];
-                This.mediaRecorder.start()
-
-                This.mediaRecorder.addEventListener("dataavailable", function (event) {
-                  voice.push(event.data);
-                });
-
-                This.mediaRecorder.addEventListener("stop", function () {
-                  This.voiceBlob = new Blob(voice, {
-                    type: 'audio/wav'
+                      // stream.addTrack(sender.track)
+                      console.log('stream.getTracks()', stream.getTracks())
+                    }
                   });
-                  console.log('voiceBlob', This.voiceBlob)
+
+                  This.mediaRecorder = new MediaRecorder(stream);
+
+                  let voice = [];
+                  This.mediaRecorder.start()
+
+                  This.mediaRecorder.addEventListener("dataavailable", function (event) {
+                    voice.push(event.data);
+                  });
+
+                  This.mediaRecorder.addEventListener("stop", function () {
+                    This.voiceBlob = new Blob(voice, {
+                      type: 'audio/wav'
+                    });
+                    console.log('voiceBlob', This.voiceBlob)
 
 
-                  let reader = new FileReader();
-                  //console.log('This.voiceBlob', This.voiceBlob)
-                  var time = This.setTimestamp()
-
-                  reader.readAsDataURL(This.voiceBlob);
-                  reader.onloadend = function () {
-                    var base64String = reader.result;
-                    var bBase64String = base64String.substr(base64String.indexOf(', ') + 1)
-
+                    let reader = new FileReader();
+                    //console.log('This.voiceBlob', This.voiceBlob)
                     var time = This.setTimestamp()
-                    console.log('sendBlobServer id mess ' + This.paramValueRoom + This.senderId + time)
-                    This.idSecondMessAT = This.paramValueRoom + This.senderId + time
 
-                    var langSrc = localStorage['gc.langSrc']
-                    var langTgt = localStorage['gc.langTgt']
+                    reader.readAsDataURL(This.voiceBlob);
+                    reader.onloadend = function () {
+                      var base64String = reader.result;
+                      var bBase64String = base64String.substr(base64String.indexOf(', ') + 1)
 
-                    This.sendBlobAudioTranslate(bBase64String, langTgt, langSrc, time, senderId, senderName, senderId, 'RealWear')
-                  }
+                      var time = This.setTimestamp()
+                      console.log('sendBlobServer id mess ' + This.paramValueRoom + This.senderId + time)
+                      This.idSecondMessAT = This.paramValueRoom + This.senderId + time
 
-                  // if (This.isSendBlob) {
-                  //   This.sendBlobServer()
-                  // }
-                  // This.isSendBlob = true
+                      var langSrc = localStorage['gc.langSrc']
+                      var langTgt = localStorage['gc.langTgt']
+
+                      This.sendBlobAudioTranslate(bBase64String, langTgt, langSrc, time, senderId, senderName, senderId, 'RealWear')
+                    }
+
+                    // if (This.isSendBlob) {
+                    //   This.sendBlobServer()
+                    // }
+                    // This.isSendBlob = true
+                  });
+
                 });
-
-              });
           }
         } catch (e) {
           console.error('error all audio = ' + e)
@@ -7244,7 +7198,7 @@ export default {
 
 
       This.$refs.previewScreenshots.addScreen(parsedMessage.nameOper, parsedMessage.nameDevice, parsedMessage.time,
-        parsedMessage.urlFile, parsedMessage.screenshotId, parsedMessage.url, blob)
+          parsedMessage.urlFile, parsedMessage.screenshotId, parsedMessage.url, blob)
     },
 
     deleteScreenshot(id) {
@@ -7342,8 +7296,8 @@ export default {
   padding: 2px;
   background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, #8d8d8d), color-stop(50%, transparent)), -webkit-gradient(linear, left top, right top, color-stop(50%, #8d8d8d), color-stop(50%, transparent)), -webkit-gradient(linear, left top, left bottom, from(0), color-stop(50%, #8d8d8d), color-stop(50%, transparent)), -webkit-gradient(linear, left top, left bottom, from(0), color-stop(50%, #8d8d8d), color-stop(50%, transparent));
   background-image: linear-gradient(
-    90deg, #8d8d8d 50%, transparent 50%), linear-gradient(
-    90deg, #8d8d8d 50%, transparent 50%), linear-gradient(0, #8d8d8d 50%, transparent 50%), linear-gradient(0, #8d8d8d 50%, transparent 50%);
+      90deg, #8d8d8d 50%, transparent 50%), linear-gradient(
+      90deg, #8d8d8d 50%, transparent 50%), linear-gradient(0, #8d8d8d 50%, transparent 50%), linear-gradient(0, #8d8d8d 50%, transparent 50%);
   background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
   background-size: 10px 2px, 10px 2px, 2px 10px, 2px 10px;
   -webkit-animation: marching-ants 400ms infinite linear;
